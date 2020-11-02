@@ -16,22 +16,42 @@
             android:id="@+id/btn_minusz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
+            android:text="<"
             android:textSize="20sp"></Button>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A"
-            android:textSize="25sp">
-
-        </TextView>
+            android:text=" A "
+            android:textSize="25sp"></TextView>
 
         <Button
             android:id="@+id/btn_plusz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+"
+            android:text=">"
             android:textSize="20sp"></Button>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_tipp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TIPPEL"
+        android:textSize="20sp"></Button>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:src="@drawable/akasztofa00">
+    </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="_ _ _ _ _ _ _"
+        android:textSize="25sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
 </LinearLayout>
