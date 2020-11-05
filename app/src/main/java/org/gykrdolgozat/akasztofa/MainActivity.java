@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView akasztofa;
     private Button buttonElore, buttonHatra, buttonTipp;
     private TextView betu, kitalalView, szoo;
-    private String kitalalandoSzo, abcBetui, vonalHossz;
+    private String kitalalandoSzo, abcBetui, vonalHossz, martippeltbetuk;
     private char aktualisBetu;
     private Random rng;
     private int randomSzam, index, elet;
@@ -38,9 +38,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+
+        for (int i = 0; i < marTippeltBetu.size(); i++) {
+            martippeltbetuk += marTippeltBetu.get(i);
+        }
+
+
+
         outState.putString("vonalakszo", vonalHossz);
         outState.putString("jelenlegiszavam", kitalalandoSzo);
         outState.putInt("index", index);
+        outState.putString("martippeltbetuk", martippeltbetuk);
     }
 
     @Override
@@ -109,8 +117,15 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             vonalHossz = savedInstanceState.get("vonalakszo").toString();
             kitalalandoSzo = savedInstanceState.get("jelenlegiszavam").toString();
+            martippeltbetuk = savedInstanceState.get("martippeltbetuk").toString();
+            index = savedInstanceState.getInt("index");
             szoo.setText(kitalalandoSzo);
             kitalalView.setText(vonalHossz);
+            betu.setText(" " + abcBetui.charAt(index) + " ");
+            for (int i = 0; i < martippeltbetuk.length(); i++) {
+                marTippeltBetu.add(martippeltbetuk.charAt(i));
+            }
+            szinvaltoztatas();
         }
     }
 
@@ -302,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         elet = 13;
         lista = new ArrayList<>();
         marTippeltBetu = new ArrayList<>();
-
+        martippeltbetuk = "";
 
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage("Szeretnél még egyet játszani?");
