@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
         buttonElore = findViewById(R.id.btn_plusz);
         buttonHatra = findViewById(R.id.btn_minusz);
         buttonTipp = findViewById(R.id.btn_tipp);
-        abcBetui = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        abcBetui = "AÁBCDEÉFGHIÍJKLMNOÓÖŐPQRSTUÚÜŰVWXYZ";
         aktualisBetu = 'A';
         kitalalView = findViewById(R.id.kitalal);
         rng = new Random();
