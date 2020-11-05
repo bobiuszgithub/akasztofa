@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private int randomSzam, index, elet;
     private AlertDialog alertDialog;
     private AlertDialog.Builder builder;
-
+    private List<Integer> lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String szavam = vonalHossz;
-                boolean tartalmazza = false;
                 char[] szavambetui = szavam.toCharArray();
                 for (int i = 0; i < kitalalandoSzo.length(); i++) {
                     if (aktualisBetu == kitalalandoSzo.charAt(i)) {
@@ -81,17 +80,38 @@ public class MainActivity extends AppCompatActivity {
                         szavam = String.valueOf(szavambetui);
                         vonalHossz = szavam;
                         kitalalView.setText(szavam);
-
+                        lista.add(1);
+                    }
+                    else{
+                        lista.add(0);
                     }
                 }
-
+                tippcheck();
+                listaurites();
             }
         });
     }
 
+    private void tippcheck(){
+    Integer nullakszama = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).equals(0)){
+                nullakszama++;
+            }
+        }
+        if (nullakszama == lista.size()){
+            eletVesztes();
+        }
+
+    }
+
+    private void listaurites(){
+        for (int i = 0; i < lista.size(); i++) {
+            lista.clear();
+        }
+    }
+
     private void eletVesztes() {
-
-
         switch (elet) {
             case 13:
                 akasztofa.setImageResource(R.drawable.akasztofa01);
@@ -147,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-
     }
 
     private void randomszoValasztas() {
@@ -227,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
         vonalHossz = "";
         szoo = findViewById(R.id.szo);
         elet = 13;
-
+        lista = new ArrayList<>();
     }
 }
 
