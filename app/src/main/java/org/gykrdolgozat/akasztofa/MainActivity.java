@@ -1,5 +1,6 @@
 package org.gykrdolgozat.akasztofa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,28 +32,39 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog alertDialog;
     private AlertDialog.Builder builder;
     private List<Integer> lista;
+    private List<Character> marTippeltBetu;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("vonalakszo", vonalHossz);
+        outState.putString("jelenlegiszavam", kitalalandoSzo);
+        outState.putInt("index", index);
+    }
+
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
         randomszoValasztas();
-        betu.setText(abcBetui.charAt(index) + " ");
+        betu.setText(" " + abcBetui.charAt(index) + " ");
         betu.setTextColor(Color.RED);
         buttonElore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 index++;
+                szinvaltoztatas();
                 if (index > abcBetui.length() - 1) {
                     index = 0;
-                    betu.setText( " " + abcBetui.charAt(index) + " ");
+                    betu.setText(" " + abcBetui.charAt(index) + " ");
                     aktualisBetu = abcBetui.charAt(index);
                 } else {
                     betu.setText(" " + abcBetui.charAt(index) + " ");
                     aktualisBetu = abcBetui.charAt(index);
                 }
+
 
             }
         });
@@ -60,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 index--;
+                szinvaltoztatas();
                 if (index < 0) {
                     index = abcBetui.length() - 1;
                     betu.setText(" " + abcBetui.charAt(index) + " ");
@@ -73,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         buttonTipp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                marTippeltBetu.add(aktualisBetu);
                 String szavam = vonalHossz;
                 char[] szavambetui = szavam.toCharArray();
                 for (int i = 0; i < kitalalandoSzo.length(); i++) {
@@ -89,9 +103,32 @@ public class MainActivity extends AppCompatActivity {
                 tippcheck();
                 listaurites();
                 nyerescheck();
+                szinvaltoztatas();
             }
         });
+        if (savedInstanceState != null) {
+            vonalHossz = savedInstanceState.get("vonalakszo").toString();
+            kitalalandoSzo = savedInstanceState.get("jelenlegiszavam").toString();
+            szoo.setText(kitalalandoSzo);
+            kitalalView.setText(vonalHossz);
+        }
     }
+
+    private void szinvaltoztatas() {
+        if (index < 0) {
+            index = abcBetui.length() - 1;
+        }
+        if (index > abcBetui.length() - 1){
+            index = 0;
+        }
+        if (marTippeltBetu.contains(abcBetui.charAt(index))) {
+            betu.setTextColor(Color.BLACK);
+        } else {
+            betu.setTextColor(Color.RED);
+        }
+
+    }
+
 
     private void tippcheck() {
         Integer nullakszama = 0;
@@ -105,14 +142,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    private void nyerescheck(){
-        String szavam = vonalHossz;
-    if (szavam.equals(kitalalandoSzo)){
 
-        builder.setTitle("Helyes megfejtés!");
-        alertDialog = builder.create();
-        alertDialog.show();
-    }
+    private void nyerescheck() {
+        String szavam = vonalHossz;
+        if (szavam.equals(kitalalandoSzo)) {
+
+            builder.setTitle("Helyes megfejtés!");
+            alertDialog = builder.create();
+            alertDialog.show();
+        }
 
 
     }
@@ -263,6 +301,8 @@ public class MainActivity extends AppCompatActivity {
         szoo = findViewById(R.id.szo);
         elet = 13;
         lista = new ArrayList<>();
+        marTippeltBetu = new ArrayList<>();
+
 
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage("Szeretnél még egyet játszani?");
