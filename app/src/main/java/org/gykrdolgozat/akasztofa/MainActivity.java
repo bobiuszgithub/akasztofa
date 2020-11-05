@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
     private List<Integer> lista;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
                 index++;
                 if (index > abcBetui.length() - 1) {
                     index = 0;
-                    betu.setText(abcBetui.charAt(index) + " ");
+                    betu.setText( " " + abcBetui.charAt(index) + " ");
                     aktualisBetu = abcBetui.charAt(index);
                 } else {
-                    betu.setText(abcBetui.charAt(index) + " ");
+                    betu.setText(" " + abcBetui.charAt(index) + " ");
                     aktualisBetu = abcBetui.charAt(index);
                 }
 
@@ -61,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 index--;
                 if (index < 0) {
                     index = abcBetui.length() - 1;
-                    betu.setText(abcBetui.charAt(index) + " ");
+                    betu.setText(" " + abcBetui.charAt(index) + " ");
                     aktualisBetu = abcBetui.charAt(index);
                 } else {
-                    betu.setText(abcBetui.charAt(index) + " ");
+                    betu.setText(" " + abcBetui.charAt(index) + " ");
                     aktualisBetu = abcBetui.charAt(index);
                 }
             }
@@ -81,31 +82,42 @@ public class MainActivity extends AppCompatActivity {
                         vonalHossz = szavam;
                         kitalalView.setText(szavam);
                         lista.add(1);
-                    }
-                    else{
+                    } else {
                         lista.add(0);
                     }
                 }
                 tippcheck();
                 listaurites();
+                nyerescheck();
             }
         });
     }
 
-    private void tippcheck(){
-    Integer nullakszama = 0;
+    private void tippcheck() {
+        Integer nullakszama = 0;
         for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).equals(0)){
+            if (lista.get(i).equals(0)) {
                 nullakszama++;
             }
         }
-        if (nullakszama == lista.size()){
+        if (nullakszama == lista.size()) {
             eletVesztes();
         }
 
     }
+    private void nyerescheck(){
+        String szavam = vonalHossz;
+    if (szavam.equals(kitalalandoSzo)){
 
-    private void listaurites(){
+        builder.setTitle("Helyes megfejtés!");
+        alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+    }
+
+    private void listaurites() {
         for (int i = 0; i < lista.size(); i++) {
             lista.clear();
         }
@@ -164,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 akasztofa.setImageResource(R.drawable.akasztofa13);
                 elet--;
+                builder.setTitle("Nem sikerült kitalálni!");
+                alertDialog = builder.create();
+                alertDialog.show();
                 break;
 
         }
@@ -239,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
         buttonHatra = findViewById(R.id.btn_minusz);
         buttonTipp = findViewById(R.id.btn_tipp);
         abcBetui = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        aktualisBetu = 'A';
         kitalalView = findViewById(R.id.kitalal);
         rng = new Random();
         index = 0;
@@ -247,6 +263,31 @@ public class MainActivity extends AppCompatActivity {
         szoo = findViewById(R.id.szo);
         elet = 13;
         lista = new ArrayList<>();
+
+        builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Szeretnél még egyet játszani?");
+        builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                vonalHossz = "";
+                randomszoValasztas();
+                akasztofa.setImageResource(R.drawable.akasztofa00);
+
+            }
+        });
+        builder.setNegativeButton("Nem", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                dialog.cancel();
+            }
+        });
+        builder.setTitle("Jatek vege");
+        builder.setCancelable(false);
+
+        alertDialog = builder.create();
+
+
     }
 }
 

@@ -14,24 +14,26 @@
 
         <Button
             android:id="@+id/btn_minusz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:textSize="20sp"></Button>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text='-'
+            android:background="@drawable/buttonbackround"
+            android:textSize="30sp"></Button>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" "
             android:id="@+id/betuk"
-            android:textSize="25sp"></TextView>
+            android:textSize="50sp"></TextView>
 
         <Button
             android:id="@+id/btn_plusz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+"
-            android:textSize="20sp"></Button>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text='+'
+            android:background="@drawable/buttonbackround"
+            android:textSize="30sp"></Button>
     </LinearLayout>
 
     <Button
@@ -48,7 +50,7 @@
         android:textSize="25sp"></TextView>
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:src="@drawable/akasztofa00"
         android:id="@+id/kep_akasztofa">
     </ImageView>
