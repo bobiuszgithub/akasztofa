@@ -16,8 +16,7 @@
             android:id="@+id/btn_minusz"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:text='-'
-            android:background="@drawable/buttonbackround"
+            android:background="@drawable/balra"
             android:textSize="30sp"></Button>
 
         <TextView
@@ -31,8 +30,7 @@
             android:id="@+id/btn_plusz"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:text='+'
-            android:background="@drawable/buttonbackround"
+            android:background="@drawable/jobbra"
             android:textSize="30sp"></Button>
     </LinearLayout>
 
@@ -49,7 +47,7 @@
         android:id="@+id/szo"
         android:textSize="10sp"></TextView>
     <ImageView
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="100dp"
         android:src="@drawable/akasztofa00"
         android:id="@+id/kep_akasztofa">

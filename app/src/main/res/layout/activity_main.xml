@@ -16,8 +16,7 @@
             android:id="@+id/btn_minusz"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:text='-'
-            android:background="@drawable/buttonbackround"
+            android:background="@drawable/balra"
             android:textSize="30sp"></Button>
 
         <TextView
@@ -31,8 +30,7 @@
             android:id="@+id/btn_plusz"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:text='+'
-            android:background="@drawable/buttonbackround"
+            android:background="@drawable/jobbra"
             android:textSize="30sp"></Button>
     </LinearLayout>
 
