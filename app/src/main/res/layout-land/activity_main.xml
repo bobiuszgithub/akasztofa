@@ -41,13 +41,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TIPPEL"
-        android:textSize="20sp"></Button>
+        android:textSize="15sp"></Button>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
         android:id="@+id/szo"
-        android:textSize="25sp"></TextView>
+        android:textSize="10sp"></TextView>
     <ImageView
         android:layout_width="200dp"
         android:layout_height="100dp"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:text="_ _ _ _ _ _ _"
         android:id="@+id/kitalal"
-        android:textSize="60sp"
+        android:textSize="40sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         />

@@ -41,16 +41,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TIPPEL"
-        android:textSize="20sp"></Button>
+        android:textSize="15sp"></Button>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
         android:id="@+id/szo"
-        android:textSize="25sp"></TextView>
+        android:textSize="10sp"></TextView>
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="260dp"
         android:src="@drawable/akasztofa00"
         android:id="@+id/kep_akasztofa">
     </ImageView>

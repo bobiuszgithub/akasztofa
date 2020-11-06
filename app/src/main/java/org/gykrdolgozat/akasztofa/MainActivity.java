@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
     private List<Integer> lista;
     private List<Character> marTippeltBetu;
+    private Toast toastJoTipp, toastRosszTipp, toastMarTippelt;
 
 
     @Override
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putString("jelenlegiszavam", kitalalandoSzo);
         outState.putInt("index", index);
         outState.putString("martippeltbetuk", martippeltbetuk);
+        outState.putInt("elet", elet);
     }
 
     @Override
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         buttonTipp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                marTippeltBetu.add(aktualisBetu);
+
                 String szavam = vonalHossz;
                 char[] szavambetui = szavam.toCharArray();
                 for (int i = 0; i < kitalalandoSzo.length(); i++) {
@@ -103,15 +105,27 @@ public class MainActivity extends AppCompatActivity {
                         szavam = String.valueOf(szavambetui);
                         vonalHossz = szavam;
                         kitalalView.setText(szavam);
+                        if (marTippeltBetu.contains(aktualisBetu)){
+                            toastMarTippelt.show();
+                        }
+                        else{
+                            toastJoTipp.show();
+                        }
+
+
+
+
                         lista.add(1);
                     } else {
                         lista.add(0);
                     }
                 }
+                marTippeltBetu.add(aktualisBetu);
                 tippcheck();
                 listaurites();
                 nyerescheck();
                 szinvaltoztatas();
+
             }
         });
         if (savedInstanceState != null) {
@@ -126,8 +140,10 @@ public class MainActivity extends AppCompatActivity {
                 marTippeltBetu.add(martippeltbetuk.charAt(i));
             }
             szinvaltoztatas();
+            elet = savedInstanceState.getInt("elet");
         }
     }
+
 
     private void szinvaltoztatas() {
         if (index < 0) {
@@ -154,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (nullakszama == lista.size()) {
             eletVesztes();
+            toastRosszTipp.show();
         }
 
     }
@@ -319,6 +336,28 @@ public class MainActivity extends AppCompatActivity {
         marTippeltBetu = new ArrayList<>();
         martippeltbetuk = "";
 
+        toastJoTipp = Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG);
+        toastJoTipp.setGravity(Gravity.CENTER, 0, 0);
+        View view = getLayoutInflater().inflate(R.layout.jotipp_toast, (ViewGroup) findViewById(R.id.customToast));
+        toastJoTipp.setView(view);
+
+
+        toastRosszTipp = Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG);
+        toastRosszTipp.setGravity(Gravity.CENTER, 0, 0);
+        View view1 = getLayoutInflater().inflate(R.layout.rossztipp_toast, (ViewGroup) findViewById(R.id.customToast));
+        toastRosszTipp.setView(view1);
+
+        toastMarTippelt = Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG);
+        toastMarTippelt.setGravity(Gravity.CENTER, 0, 0);
+        View view2 = getLayoutInflater().inflate(R.layout.martippelt_toast, (ViewGroup) findViewById(R.id.customToast));
+        toastMarTippelt.setView(view2);
+
+
+
+
+
+
+
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage("Szeretnél még egyet játszani?");
         builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
@@ -327,6 +366,9 @@ public class MainActivity extends AppCompatActivity {
                 vonalHossz = "";
                 randomszoValasztas();
                 akasztofa.setImageResource(R.drawable.akasztofa00);
+                marTippeltBetu.clear();
+                szinvaltoztatas();
+                elet = 13;
 
             }
         });
