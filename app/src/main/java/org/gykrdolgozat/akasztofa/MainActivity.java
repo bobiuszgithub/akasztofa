@@ -257,12 +257,12 @@ public class MainActivity extends AppCompatActivity {
     private void randomszoValasztas() {
         randomSzam = rng.nextInt(10) + 1;
         if (randomSzam == 1) {
-            kitalalandoSzo = "VITAMIN";
+            kitalalandoSzo = "SÓ";
             vonalFeltoltes();
             szoo.setText(kitalalandoSzo);
             kitalalView.setText(vonalHossz);
         } else if (randomSzam == 2) {
-            kitalalandoSzo = "COLA";
+            kitalalandoSzo = "ÉDES";
             vonalFeltoltes();
             szoo.setText(kitalalandoSzo);
             kitalalView.setText(vonalHossz);
@@ -272,12 +272,12 @@ public class MainActivity extends AppCompatActivity {
             szoo.setText(kitalalandoSzo);
             kitalalView.setText(vonalHossz);
         } else if (randomSzam == 4) {
-            kitalalandoSzo = "KUTYA";
+            kitalalandoSzo = "ÉKEZET";
             vonalFeltoltes();
             szoo.setText(kitalalandoSzo);
             kitalalView.setText(vonalHossz);
         } else if (randomSzam == 5) {
-            kitalalandoSzo = "MACSKA";
+            kitalalandoSzo = "VÍZ";
             vonalFeltoltes();
             szoo.setText(kitalalandoSzo);
             kitalalView.setText(vonalHossz);
